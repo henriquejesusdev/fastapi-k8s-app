@@ -1,0 +1,41 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual env
+.venv/
+venv/
+ENV/
+
+# Poetry
+poetry.lock
+
+# Build artifacts
+build/
+dist/
+*.egg-info/
+
+# Test/coverage
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Tooling
+.mypy_cache/
+.ruff_cache/
+.pytype/
+
+# Editors
+.vscode/
+.idea/
+
+# Env files
+.env
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Pyenv
+.python-version
