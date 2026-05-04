@@ -8,7 +8,16 @@ authors = [
 readme = "README.md"
 requires-python = ">=3.14"
 dependencies = [
+    "fastapi>=0.115.0",
+    "uvicorn>=0.30.0",
 ]
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.0.0"
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]
 
 [tool.poetry]
 packages = [{include = "fastapi_k8s_app", from = "src"}]
