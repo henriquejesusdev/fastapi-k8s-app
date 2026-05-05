@@ -11,6 +11,8 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
+    env:
+      IMAGE_NAME: fastapi-app:latest
 
     steps:
       - name: Checkout code
@@ -44,3 +46,20 @@ jobs:
 
       - name: Build package
         run: poetry build
+
+      - name: Build Docker image
+        run: docker build -t $IMAGE_NAME .
+
+      - name: Run Docker container
+        run: |
+          docker run -d --name fastapi-app -p 8000:8000 $IMAGE_NAME
+          for i in {1..10}; do
+            if curl --fail http://localhost:8000/; then
+              docker rm -f fastapi-app
+              exit 0
+            fi
+            sleep 2
+          done
+          docker logs fastapi-app
+          docker rm -f fastapi-app
+          exit 1
